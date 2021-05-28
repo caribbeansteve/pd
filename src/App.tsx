@@ -2,7 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { ethers } from "ethers";
-import Address from './Address'
+import MainPage from './components/MainPage/MainPage';
 
 declare global {
   interface Window {
@@ -10,14 +10,12 @@ declare global {
   }
 }
 
-let signer;
-
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Address />
+        <MainPage />
       </header>
     </div>
   );
