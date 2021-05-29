@@ -1,6 +1,7 @@
 import React from 'react';
 import { ethers } from 'ethers';
 import Address from '../address/Address';
+import PageContent from '../PageContent/PageContent'
 import './MainPage.css';
 
 type AccountState = {
@@ -38,11 +39,19 @@ class MainPage extends React.Component<{}, AccountState> {
     render() {
         return (
             <div>
-                <Address 
-                address={this.displayAddress()} 
-                status={this.state.status} 
-                onLogin={this.login}/>
-            </div>
+                <div className="Header">
+                    Pool Daddies
+                    <Address 
+                        address={this.displayAddress()} 
+                        status={this.state.status} 
+                        onLogin={this.login}
+                    />
+                </div>
+                <PageContent 
+                    address={this.state.address}
+                    status={this.state.status}
+                />
+            </div>   
         )  
     }
   }

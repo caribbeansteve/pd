@@ -8,22 +8,14 @@ declare global {
   }
 }
 
-
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <div>
-        Pool Daddies
-        </div>
         <MainPage />
       </header>
-      <div className="App-Body">
-        Testing
-      </div>
     </div>
   );
 }
-
 
 export default App;
