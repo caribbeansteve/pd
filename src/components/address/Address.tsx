@@ -1,41 +1,44 @@
-import { LogDescription } from "@ethersproject/abi";
-import {ethers} from "ethers"
 import React from "react";
+import "./Address.css"
+
 
 type AddressProps = {
     address: string;
     status: 'loggedOut' | 'loading' | 'loggedIn';
+    onLogin: any;
 }
 
-let provider : ethers.providers.Web3Provider;
 
 class Address extends React.Component<AddressProps, {}> {
     constructor(props : AddressProps){
         super(props)
-        this.login = this.login.bind(this);
+        this.handleEvents = this.handleEvents.bind(this);
     }
 
-    login() {
-        this.setState({status: "loading"});
-        window.ethereum.enable().then( () => {
-            provider = new ethers.providers.Web3Provider(window.ethereum || {});
-            provider.getSigner().getAddress().then( (res) => {
-                this.setState({address: res, status: "loggedIn"})
-            });
-        })
+    handleEvents(){
+        this.props.onLogin();
     }
+
 
     render() {
         let button;
-        if (this.props.status == 'loading') {
-            button = <button disabled={true}> </button>;
-        } else if (this.props.status == 'loggedIn') {
-            button = ''
-        } else {
-            button = <button onClick={this.login}>Log In</button>
+        switch(this.props.status) {
+            case 'loading':
+                button = <button disabled={true}> </button>;
+                break;
+            case 'loggedIn':
+                button = <img 
+                            src={process.env.PUBLIC_URL + './images/greencheck.svg'}
+                            style={{width:"20px", height:"20px"}}
+                            alt="You're logged in!">
+                        </img>
+                break;
+            case 'loggedOut':
+                button = <button onClick={this.handleEvents}>Log In</button>
         }
+
         return (
-            <div >
+            <div className="Login" >
                 <span>
                     Address is: {this.props.address}
                     {button}

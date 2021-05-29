@@ -1,7 +1,5 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import { ethers } from "ethers";
 import MainPage from './components/MainPage/MainPage';
 
 declare global {
@@ -15,8 +13,14 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <div>
+        Pool Daddies
+        </div>
         <MainPage />
       </header>
+      <div className="App-Body">
+        Testing
+      </div>
     </div>
   );
 }

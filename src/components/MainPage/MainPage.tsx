@@ -1,6 +1,7 @@
 import React from 'react';
 import { ethers } from 'ethers';
 import Address from '../address/Address';
+import './MainPage.css';
 
 type AccountState = {
     address: string;
@@ -29,10 +30,19 @@ class MainPage extends React.Component<{}, AccountState> {
             });
         })
     }
+
+    displayAddress() {
+        return this.state.address.length > 0 ? "0x..." + this.state.address.substring(this.state.address.length - 4) : "";
+    }
     
     render() {
         return (
-            <Address address={this.state.address} status={this.state.status}/>
+            <div>
+                <Address 
+                address={this.displayAddress()} 
+                status={this.state.status} 
+                onLogin={this.login}/>
+            </div>
         )  
     }
   }
