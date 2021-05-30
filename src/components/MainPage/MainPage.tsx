@@ -1,6 +1,8 @@
 import React from 'react';
 import { ethers } from 'ethers';
 import Address from '../address/Address';
+import PageContent from '../PageContent/PageContent'
+import './MainPage.css';
 
 type AccountState = {
     address: string;
@@ -25,14 +27,31 @@ class MainPage extends React.Component<{}, AccountState> {
         window.ethereum.enable().then( () => {
             provider = new ethers.providers.Web3Provider(window.ethereum || {});
             provider.getSigner().getAddress().then( (res) => {
-                this.setState({address: res, status: "loggedIn"})
+                this.setState({address: res, status: "loggedIn"});
             });
         })
+    }
+
+    displayAddress() {
+        return this.state.address.length > 0 ? "0x.." + this.state.address.substring(this.state.address.length - 4) : "";
     }
     
     render() {
         return (
-            <Address address={this.state.address} status={this.state.status}/>
+            <div>
+                <div className="Header">
+                    Pool Daddies
+                    <Address 
+                        address={this.displayAddress()} 
+                        status={this.state.status} 
+                        onLogin={this.login}
+                    />
+                </div>
+                <PageContent 
+                    address={this.state.address}
+                    status={this.state.status}
+                />
+            </div>   
         )  
     }
   }

@@ -1,0 +1,12 @@
+.Login {
+    background-color: #282c34;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    font-size: calc(5px + 2vmin);
+    color: white;
+  }
+
+  .Login-Button {
+      color:forestgreen;
+  }
