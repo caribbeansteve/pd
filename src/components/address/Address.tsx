@@ -27,20 +27,23 @@ class Address extends React.Component<AddressProps, {}> {
                 button = <button disabled={true}> </button>;
                 break;
             case 'loggedIn':
-                button = <img 
+                button = 
+                    <div>Address is: {this.props.address}
+                        <img 
                             src={process.env.PUBLIC_URL + './images/greencheck.svg'}
                             style={{width:"20px", height:"20px"}}
                             alt="You're logged in!">
                         </img>
+                    </div>
                 break;
             case 'loggedOut':
-                button = <button onClick={this.handleEvents}>Log In</button>
+                button = <button className="Login-Button" onClick={this.handleEvents}>Log In</button>
         }
 
         return (
             <div className="Login" >
                 <span>
-                    Address is: {this.props.address}
+                    
                     {button}
                 </span> 
             </div>

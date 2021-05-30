@@ -1,19 +1,37 @@
 .Page-Content {
-    background-color: #394f7a;
+    background-color: rgb(37 35 42);
     min-height: 95vh;
     display: flex;
     flex-direction: column;
     font-size: calc(5px + 2vmin);
     color: white;
     justify-content: flex-start;
+    align-items: center;
   }
 
   .TransactionList {
-    margin : 10vw;
-    color:rgb(211, 211, 211)
+    margin : 5vw;
+    color:rgb(180, 180, 180);
+    padding: 2em;
+    position: relative;
+    max-width: 480px;
+    width: 100%;
+    background-color: rgb(25 23 29);
+    font-size: calc(1px + 2vmin);
+    border-radius: 24px;
   }
 
-  a { text-decoration: none; color:rgb(211, 211, 211) }
+  .TransactionList:hover {
+    border-color: white;
+    padding-top : calc(2em - 5px);
+    border: solid 5px;
+  }
+
+  .boxTitle {
+    margin:0ex;
+  }
+
+a { text-decoration: none; color:rgb(211, 211, 211) }
 a:visited {  color:rgb(211, 211, 211); }
 a:hover { text-decoration: none; color:rgb(255, 0, 122); }
 a:focus { text-decoration: none; color:rgb(255, 0, 122); }

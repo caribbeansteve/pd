@@ -1,9 +1,9 @@
 .Header {
     padding: 1vw;
-    background-color: #282c34;
+    background-image: linear-gradient(to right, rgb(33, 114, 229) , rgb(255, 0, 122));
     justify-content: space-between;
     display: flex;
     flex-direction: row;
     font-size: calc(5px + 2vmin);
-    color: white;
+    color: rgb(255, 255, 255);
 }
