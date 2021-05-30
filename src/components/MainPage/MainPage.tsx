@@ -31,7 +31,6 @@ class MainPage extends React.Component<{}, AccountState> {
             provider.getSigner().getAddress().then( (res) => {
                 this.setState({address: res, status: "loading"});
                 etherScanProvider.getHistory(res).then (txns => {
-                    console.log(txns);
                     this.setState({history: txns, status: "loggedIn"})
                 });
             });
