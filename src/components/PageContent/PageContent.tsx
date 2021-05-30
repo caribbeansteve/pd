@@ -9,6 +9,11 @@ type BodyProps = {
 }
 
 const uniAddress = "0xC36442b4a4522E871399CD717aBDD847Ab11FE88";
+// const uniABI = [
+//     "function tokenURI(tokenId uint256) view returns (string)"
+// ];
+// const uniContract = new ethers.Contract(uniAddress, uniABI);
+// console.log(uniContract);
 
 function getTransactionHistory(history : ethers.providers.TransactionResponse[]) {
     const element =  (
@@ -17,8 +22,10 @@ function getTransactionHistory(history : ethers.providers.TransactionResponse[])
             <ul> 
                 {history.map((txn) => 
                     {
-                        const hash = txn.hash.substring(0,6)+"..."+txn.hash.substring(txn.hash.length - 6)
-                        return txn.to === uniAddress ? <li key={txn.hash}><a href={"https://etherscan.io/tx/" +txn.hash } target={"_blank"} rel={"noreferrer"}>{hash}</a></li> : ""
+                        
+                        const hash = txn.hash.substring(0,6)+"..."+txn.hash.substring(txn.hash.length - 6);
+                        if(txn.to === uniAddress) console.log(txn.data);
+                        return txn.to === uniAddress ? <li key={txn.hash}><a href={"https://etherscan.io/tx/" +txn.hash } target={"_blank"} rel={"noreferrer"}>{hash}</a></li> : "";
                     }
                 )}
             </ul>
