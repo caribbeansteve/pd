@@ -24,7 +24,7 @@ class Address extends React.Component<AddressProps, {}> {
         let button;
         switch(this.props.status) {
             case 'loading':
-                button = <button disabled={true}> </button>;
+                button = <button className="Login-Button" disabled={true}>Log In</button>;
                 break;
             case 'loggedIn':
                 button = 
