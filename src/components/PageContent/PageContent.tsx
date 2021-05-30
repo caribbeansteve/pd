@@ -15,7 +15,6 @@ class PageContent extends React.Component<BodyProps, {}> {
             </div>
         )
     }
-
 }
 
 export default PageContent;

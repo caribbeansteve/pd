@@ -27,13 +27,13 @@ class MainPage extends React.Component<{}, AccountState> {
         window.ethereum.enable().then( () => {
             provider = new ethers.providers.Web3Provider(window.ethereum || {});
             provider.getSigner().getAddress().then( (res) => {
-                this.setState({address: res, status: "loggedIn"})
+                this.setState({address: res, status: "loggedIn"});
             });
         })
     }
 
     displayAddress() {
-        return this.state.address.length > 0 ? "0x..." + this.state.address.substring(this.state.address.length - 4) : "";
+        return this.state.address.length > 0 ? "0x.." + this.state.address.substring(this.state.address.length - 4) : "";
     }
     
     render() {
