@@ -7,6 +7,7 @@ import './MainPage.css';
 type AccountState = {
     address: string;
     status: 'loggedOut' | 'loading' | 'loggedIn';
+    history : ethers.providers.TransactionResponse[];
 }
 
 type AccountProps = {
@@ -14,11 +15,12 @@ type AccountProps = {
 }
 
 export let provider : ethers.providers.Web3Provider;
+export const etherScanProvider = new ethers.providers.EtherscanProvider("homestead", process.env.ETHERSCAN_API_KEY);
 
 class MainPage extends React.Component<{}, AccountState> {
     constructor(props: AccountProps){
         super(props)
-        this.state = {address: "", status:"loggedOut" };
+        this.state = {address: "", status:"loggedOut", history : []};
         this.login = this.login.bind(this);
     }
 
@@ -27,8 +29,15 @@ class MainPage extends React.Component<{}, AccountState> {
         window.ethereum.enable().then( () => {
             provider = new ethers.providers.Web3Provider(window.ethereum || {});
             provider.getSigner().getAddress().then( (res) => {
-                this.setState({address: res, status: "loggedIn"});
+                this.setState({address: res, status: "loading"});
+                etherScanProvider.getHistory(res).then (txns => {
+                    console.log(txns);
+                    this.setState({history: txns, status: "loggedIn"})
+                });
             });
+
+           
+
         })
     }
 
@@ -50,6 +59,7 @@ class MainPage extends React.Component<{}, AccountState> {
                 <PageContent 
                     address={this.state.address}
                     status={this.state.status}
+                    history={this.state.history}
                 />
             </div>   
         )  
