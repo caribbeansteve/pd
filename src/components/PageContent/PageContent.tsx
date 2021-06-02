@@ -9,14 +9,15 @@ type BodyProps = {
 }
 
 const uniAddress = "0xC36442b4a4522E871399CD717aBDD847Ab11FE88";
-// const uniABI = [
-//     "function tokenURI(tokenId uint256) view returns (string)"
-// ];
-// const uniContract = new ethers.Contract(uniAddress, uniABI);
-// console.log(uniContract);
+const uniABI = [
+    "function tokenURI(tokenId uint256) view returns (string)"
+];
+const uniContract = new ethers.utils.Interface(uniABI);
+
 
 function getTransactionHistory(history : ethers.providers.TransactionResponse[]) {
-    const element =  (
+    console.log(uniContract.format());
+    return (
         <div className="TransactionList" >
             <h4 className="boxTitle">Uniswap v3 LP Transactions:</h4>
             <ul> 
@@ -24,7 +25,7 @@ function getTransactionHistory(history : ethers.providers.TransactionResponse[])
                     {
                         
                         const hash = txn.hash.substring(0,6)+"..."+txn.hash.substring(txn.hash.length - 6);
-                        if(txn.to === uniAddress) console.log(txn.data);
+                        if(txn.to === uniAddress) console.log(txn.value.toString());
                         return txn.to === uniAddress ? <li key={txn.hash}><a href={"https://etherscan.io/tx/" +txn.hash } target={"_blank"} rel={"noreferrer"}>{hash}</a></li> : "";
                     }
                 )}
@@ -32,7 +33,6 @@ function getTransactionHistory(history : ethers.providers.TransactionResponse[])
         </div>
         
     );
-    return element;
 }
 
 class PageContent extends React.Component<BodyProps, {}> {
